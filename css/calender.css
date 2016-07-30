@@ -36,7 +36,7 @@ thead tr td {
     padding: 2px;
     text-align: center;
     border: 1px solid gray;
-    width: 107px;
+    width: 14%;
     font-family: monospace;
     height: 20px;
 }
@@ -45,9 +45,11 @@ a {
     font-size: 24px;
     text-align: center;
     border: 1px solid gray;
-    width: 107px;
+    width: 14%;
     height: 80px;
     float: left;
+    margin-bottom: 1px;
+    margin-left: 2px;
     display: inline-block;
     font-family: monospace;
 }

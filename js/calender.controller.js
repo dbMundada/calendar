@@ -176,7 +176,6 @@ function CalenderCntrl($scope) {
         for (i=days; i<42; i++)  {
             vm.list.push({value: 0, month: month, year: year});
         }
-        document.calControl.Go.focus();
     }
 
 
@@ -271,7 +270,6 @@ function CalenderCntrl($scope) {
             else { days=28; }
         }
         return (days);
-
     }
 
     vm.isLeapYear = function (Year) {
@@ -280,4 +278,3 @@ function CalenderCntrl($scope) {
         } else { return (false); }
     }
 };
-;
