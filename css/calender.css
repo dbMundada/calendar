@@ -1,0 +1,103 @@
+.page-header {
+    padding-bottom: 0px;
+    margin: 18px 0 5px;
+    border-bottom: 1px solid #eee;
+}
+.table {
+    margin-bottom: 0;
+}
+thead {
+    background: #2875c7;
+    color: #fff;
+}
+span.glyphicon {
+    position: relative;
+    top: 25px;
+    left: 10%;
+    margin-right: 4px;
+}
+span.notify{
+    position: relative;
+    top: -30px;
+    left: 20%;
+    padding: 4px;
+    background: #A52A2a;
+    color: #A52A2a;
+    border-radius: 40%;
+}
+span.glyphicon.glyphicon-plus-sign{
+    color: lightseagreen;
+    font-size: 14px;
+}
+span.glyphicon.glyphicon-trash{
+    color: black;
+}
+thead tr td {
+    padding: 2px;
+    text-align: center;
+    border: 1px solid gray;
+    width: 107px;
+    font-family: monospace;
+    height: 20px;
+}
+a {
+    padding: 25px 2px;
+    font-size: 24px;
+    text-align: center;
+    border: 1px solid gray;
+    width: 107px;
+    height: 80px;
+    float: left;
+    display: inline-block;
+    font-family: monospace;
+}
+a span{
+    font-size: 12px;
+}
+a.active {
+    background: #E3F2FF;
+}
+a:hover {
+    background: #999;
+    text-decoration: none;
+}
+.row {
+    margin: 5px;
+}
+.btn-group, .btn-group-vertical {
+    float: right;
+    margin-right: -20px;
+}
+.table>tbody>tr>a {
+    vertical-align: middle;
+}
+#editModal {
+    position: fixed;
+    z-index: 999;
+    box-shadow: 5px 5px 5px  gray;
+    top: 150px;
+    left: 30%;
+    right:30%;
+}
+blockquote {
+    border: 1px solid grey;
+    padding: 10px;
+    background: mintcream;
+    border-radius: 5px;
+}
+blockquote:hover {
+    background: aliceblue;
+}
+cite {
+    font-style: italic;
+    font-weight: 800;
+}
+.wrapModal {
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 100%;
+    z-index: 1000;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+}

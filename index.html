@@ -1,0 +1,109 @@
+<!doctype html>
+<html ng-app="calenderApp">
+	<head>
+		<meta charset="utf-8">
+		<title>Calendar App</title>
+        <link  rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/calender.css">
+	</head>
+	<body ng-controller="CalenderCntrl as vm">
+        <div class="row" ng-init="vm.setToday()">
+            <div class="col-md-7">
+                <div class="page-header">
+                  <h1>Calendar-Application <small> by Dattaprasad Mundada</small></h1>
+                </div>
+                <form>
+                    <div class="row form-group" >
+                        <div class="col-md-3">
+                            <select name="month" disabled="true" ng-model="vm.selectedMonth" class="form-control" onChange="selectDate()">
+                                <option ng-repeat="month in vm.monthList">{{ month.label }}</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="input-group">
+                              <input type="text" class="form-control" ng-model="vm.selectedYear" name="year" SIZE=4 MAXLENGTH=4>
+                              <span class="input-group-btn">
+                                <button class="btn btn-default" type="button" name="Go" ng-click="vm.selectDate()">Go!</button>
+                              </span>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="btn-group">
+                                <button class="btn btn-primary" ng-click="vm.setPreviousYear()"> << </button>
+                                <button class="btn btn-primary" ng-click="vm.setPreviousMonth()">Previous</button>
+                                <button class="btn btn-primary" ng-click="vm.setToday()">Today</button>
+                                <button class="btn btn-primary" ng-click="vm.setNextMonth()">Next</button>
+                                <button class="btn btn-primary" ng-click="vm.setNextYear()"> >> </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <td ng-repeat="weekDay in vm.weekDaysList"> {{ weekDay.label }} </td>
+                        </tr>
+                    </thead>
+                </table>
+                <div id="calender">
+                    <a ng-repeat="item in vm.list" ng-click="vm.showAppointment(item)" ng-class="item.flag" >
+                        {{ item.value!==0 ? item.value : '' }}
+                        <span class="notify" ng-show="item.appointment"> * </span>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Near Future Appointments:</h3>
+                    </div>
+                </div>
+                <blockquote ng-repeat="appointment in vm.appointmentList | orderBy: 'month': 'day' | limitTo: 5">
+                    <p>{{ appointment.title }}</p>
+                    <footer>
+                        {{ appointment.description }}<br>
+                        <cite>[{{ appointment.day }} {{ vm.setMonth(appointment.month) }} {{ appointment.year }}]</cite>
+                    </footer>
+                </blockquote>
+            </div>
+        </div>
+
+        <div class="wrapModal" ng-show="vm.showEditModal">
+            <div id="editModal"  class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title" ng-show="vm.disableAdd">Edit the Appointment</h3>
+                    <h3 class="panel-title" ng-show="!vm.disableAdd">Add the Appointment</h3>
+                </div>
+                <div class="panel-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Selected Date:</label>
+                            <input type="text" class="form-control" placeholder="{{ vm.selectedDate }}" disabled="true">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Appointment Title:</label>
+                            <input type="text" ng-model="vm.title" class="form-control" placeholder="Title">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Description:</label>
+                            <textarea type="text" ng-model="vm.description" class="form-control" placeholder="Description"></textarea>
+                        </div>
+                        <button type="submit"
+                            ng-show="vm.disableAdd"
+                            class="btn btn-success"
+                            ng-click="vm.editAppointment()">Edit</button>
+                        <button type="submit"
+                            ng-show="!vm.disableAdd"
+                            class="btn btn-success"
+                            ng-click="vm.saveAppointment()">Save</button>
+                        <button type="submit" ng-click="vm.deleteAppointment()" class="btn btn-danger">Delete</button>
+                        <button type="submit" ng-click="vm.closeModal()" style="float:right;" class="btn btn-default">Close</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <script src="js/angular.min.js"></script>
+        <script src="js/calender.controller.js"></script>
+	</body>
+</html>
