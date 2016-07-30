@@ -18,13 +18,13 @@ function CalenderCntrl($scope) {
         {label: "December", value: 11}
     ];
     vm.weekDaysList = [
+        {label: "SUN", value: 6},
         {label: "MON", value: 0},
         {label: "TUE", value: 1},
         {label: "WED", value: 2},
         {label: "THU", value: 3},
         {label: "FRI", value: 4},
-        {label: "SAT", value: 5},
-        {label: "SUN", value: 6}
+        {label: "SAT", value: 5}
     ];
     vm.list = [];
     vm.appointmentList = [
