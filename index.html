@@ -46,23 +46,44 @@
                     </thead>
                 </table>
                 <div id="calender">
-                    <a ng-repeat="item in vm.list" ng-click="vm.showAppointment(item)" ng-class="item.flag" >
-                        {{ item.value!==0 ? item.value : '' }}
-                        <span class="notify" ng-show="item.appointment"> * </span>
+                    <a ng-repeat="item in vm.list" ng-class="item.flag" >
+                        {{ item.day!==0 ? item.day : '' }}
+                        <span class="show notify" ng-click="vm.showTodaysAppointment(item)" ng-show="item.appointment"> show </span>
+                        <span class="add notify" ng-click="vm.showAppointment(item, false)" ng-show="item.day!==0"> Add </span>
                     </a>
                 </div>
             </div>
-            <div class="col-md-5">
+            <div ng-hide="vm.appointmentsForDay" class="col-md-5">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
                         <h3 class="panel-title">Near Future Appointments:</h3>
                     </div>
                 </div>
                 <blockquote ng-repeat="appointment in vm.appointmentList | orderBy: 'month': 'day' | limitTo: 5">
-                    <p>{{ appointment.title }}</p>
+                    <p>
+                        {{ appointment.title }}
+                        <strong class="editButton" ng-click="vm.showAppointment(appointment, true)"> Edit </strong
+                    </p>
                     <footer>
                         {{ appointment.description }}<br>
-                        <cite>[{{ appointment.day }} {{ vm.setMonth(appointment.month) }} {{ appointment.year }}]</cite>
+                        <cite>From: {{ appointment.fromHour }}:{{ appointment.fromMinute }} To: {{ appointment.toHour }}:{{ appointment.toMinute }} [{{ appointment.day }} {{ vm.setMonth(appointment.month) }} {{ appointment.year }}]</cite>
+                    </footer>
+                </blockquote>
+            </div>
+            <div ng-show="vm.appointmentsForDay" class="col-md-5">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Appointments for the Day:</h3>
+                    </div>
+                </div>
+                <blockquote ng-repeat="appointment in vm.todaysAppointmentList | orderBy: 'month': 'day' ">
+                    <p>
+                        {{ appointment.title }}
+                        <strong class="editButton" ng-click="vm.showAppointment(appointment, true)"> Edit </strong>
+                    </p>
+                    <footer>
+                        {{ appointment.description }}<br>
+                        <cite>From: {{ appointment.fromHour }}:{{ appointment.fromMinute }} To: {{ appointment.toHour }}:{{ appointment.toMinute }} [{{ appointment.day }} {{ vm.setMonth(appointment.month) }} {{ appointment.year }}]</cite>
                     </footer>
                 </blockquote>
             </div>
@@ -71,11 +92,26 @@
         <div class="wrapModal" ng-show="vm.showEditModal">
             <div id="editModal"  class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title" ng-show="vm.disableAdd">Edit the Appointment</h3>
-                    <h3 class="panel-title" ng-show="!vm.disableAdd">Add the Appointment</h3>
+                    <h3 class="panel-title" ng-hide="vm.disableAdd">Edit the Appointment</h3>
+                    <h3 class="panel-title" ng-show="vm.disableAdd">Add the Appointment</h3>
                 </div>
                 <div class="panel-body">
                     <form>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Select Time Period:</label>
+                            <div class="row">
+                                <div class="input-group col-md-6">
+                                  <div class="input-group-addon">From: </div>
+                                  <input type="number" ng-model="vm.fromTimeHour" class="form-control" min="0" max="23" placeholder="{{ 'hour' || vm.selectedDate }}" >
+                                  <input type="number" ng-model="vm.fromTimeMinute" class="form-control" min="0" max="59" placeholder="{{ 'minutes' || vm.selectedDate }}" >
+                                </div>
+                                <div class="input-group col-md-6">
+                                  <div class="input-group-addon">To: </div>
+                                  <input type="number" ng-model="vm.toTimeHour" class="form-control" min="0" max="23" placeholder="{{ 'hour' || vm.selectedDate }}" >
+                                  <input type="number" ng-model="vm.toTimeMinute" class="form-control" min="0" max="59" placeholder="{{ 'minutes' || vm.selectedDate }}" >
+                                </div>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Selected Date:</label>
                             <input type="text" class="form-control" placeholder="{{ vm.selectedDate }}" disabled="true">

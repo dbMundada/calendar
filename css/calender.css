@@ -16,14 +16,33 @@ span.glyphicon {
     left: 10%;
     margin-right: 4px;
 }
+span.show {
+    background-color: #d9534f;
+}
+
+span.add {
+    background-color: #337ab7;
+}
+
+.editButton {
+    background-color: #5cb85c;
+    float: right;
+    font-size: 12px;
+    padding: 3px 12px;
+    color: #fff;
+    cursor: pointer;
+}
+
 span.notify{
     position: relative;
-    top: -30px;
-    left: 20%;
-    padding: 4px;
-    background: #A52A2a;
-    color: #A52A2a;
-    border-radius: 40%;
+    top: -58px;
+    left: 60%;
+    margin-top: 6px;
+    cursor: pointer;
+    width: 40px;
+    text-align: center;
+    display: block;
+    color: #fff;
 }
 span.glyphicon.glyphicon-plus-sign{
     color: lightseagreen;
@@ -41,9 +60,8 @@ thead tr td {
     height: 20px;
 }
 a {
-    padding: 25px 2px;
+    padding: 25px 10px;
     font-size: 24px;
-    text-align: center;
     border: 1px solid gray;
     width: 14%;
     height: 80px;
@@ -77,7 +95,7 @@ a:hover {
     position: fixed;
     z-index: 999;
     box-shadow: 5px 5px 5px  gray;
-    top: 150px;
+    top: 80px;
     left: 30%;
     right:30%;
 }
@@ -102,4 +120,9 @@ cite {
     position: fixed;
     top: 0;
     left: 0;
+}
+.input-group[class*=col-] {
+    float: left;
+    padding-right: 5px;
+    padding-left: 6px;
 }
