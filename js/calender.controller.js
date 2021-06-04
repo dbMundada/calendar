@@ -1,8 +1,8 @@
 var app = angular.module('calenderApp', []) ;
 app.controller('CalenderCntrl', CalenderCntrl);
 
-// const Password = 1;
-// const salary = 234;
+// const LastName = "erger";
+// const Gender = "Male";
 // const CreditCardId = 23432;
 
 
