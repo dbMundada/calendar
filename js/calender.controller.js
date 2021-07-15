@@ -1,6 +1,11 @@
 var app = angular.module('calenderApp', []) ;
 app.controller('CalenderCntrl', CalenderCntrl);
 
+const phoneNumber = "rgekjrng kjrgnjke";
+const salary ="serger";
+const stripeAcct = 12123;
+const username = "asfweferg.com";
+
 function CalenderCntrl($scope) {
     var vm = this;
     vm.monthList = [
